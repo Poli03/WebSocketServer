@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const { callbackify } = require('util');
+const { socketController } = require('../sockets/controller');
 
 class Server{
     constructor(){
@@ -13,6 +15,8 @@ class Server{
         this.middelwares();
         //Routes
         this.routes();
+
+        this.sockets();
     }
 
     middelwares(){
@@ -22,6 +26,10 @@ class Server{
     }
 
     routes(){}
+
+    sockets(){
+        this.io.on('connection', socketController);
+    }
 
     listen(){
         this.server.listen(this.port, () =>{
