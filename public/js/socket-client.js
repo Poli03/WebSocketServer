@@ -1,1 +1,1 @@
-console.log('Socket ClientReady')
+console.log('Socket Client Ready')
